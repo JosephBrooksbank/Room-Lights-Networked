@@ -9,7 +9,7 @@ try:
 except socket.error as e:
     print(str(e))
 
-color = 'green'
+color = 'blue'
 brightness = 255
 commands = {'currentColor' : color, 'brightness' : str(brightness)}
 
