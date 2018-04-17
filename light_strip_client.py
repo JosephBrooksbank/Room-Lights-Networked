@@ -22,12 +22,10 @@ class light_strip_client(client):
         while True:
             brightness_ratio = self.brightness / MAX_BRIGHTNESS
             r,g,b = self.color
-            # self.pi.set_PWM_dutycycle(RED_PIN, r * brightness_ratio)
-            # self.pi.set_PWM_dutycycle(GREEN_PIN, g * brightness_ratio)
-            # self.pi.set_PWM_dutycycle(BLUE_PIN, b * brightness_ratio)
-            print("Setting RED: " + str(r * brightness_ratio))
-            print("Setting BLUE: " + str(b * brightness_ratio))
-            print("Setting GREEN " + str(g * brightness_ratio))
+            self.pi.set_PWM_dutycycle(RED_PIN, r * brightness_ratio)
+            self.pi.set_PWM_dutycycle(GREEN_PIN, g * brightness_ratio)
+            self.pi.set_PWM_dutycycle(BLUE_PIN, b * brightness_ratio)
+
 
 
 
