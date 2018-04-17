@@ -32,3 +32,5 @@ class light_hue_client(client):
                 self.currentColor = self.color
 
 
+if __name__ == '__main__':
+    light_hue_client().main()
