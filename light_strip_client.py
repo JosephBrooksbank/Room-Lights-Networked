@@ -1,6 +1,6 @@
 from light_client import client
 import threading
-
+import pigpio
 RED_PIN = 17
 GREEN_PIN = 24
 BLUE_PIN = 22
@@ -10,7 +10,7 @@ class light_strip_client(client):
 
     def __init__(self):
         super().__init__()
-        #self.pi = pigpio.pi()
+        self.pi = pigpio.pi()
 
     def main(self):
 
