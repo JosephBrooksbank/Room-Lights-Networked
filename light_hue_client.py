@@ -14,6 +14,7 @@ class light_hue_client(client):
 
 
         self.bridge.set_group(Config.HUE_GROUP_ID, 'bri', self.brightness)
+        r, g, b = self.color
         xy_value = self.converter.rgb_to_xy(r, g, b)
         self.bridge.set_group(Config.HUE_GROUP_ID, 'xy', xy_value)
 
