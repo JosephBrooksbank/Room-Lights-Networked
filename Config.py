@@ -6,6 +6,6 @@ class Config:
     SERVER_IP = '127.0.0.1'
 
     RED_PIN = 17
-    GREEN_PIN = 24
-    BLUE_PIN = 22
+    GREEN_PIN = 22
+    BLUE_PIN = 24
 
