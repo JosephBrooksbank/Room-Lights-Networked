@@ -31,6 +31,7 @@ class client:
             if not data:
                 break
             data = json.loads(data)
+            print(data)
             self.r, self.b, self.g = data
             self.pi.set_PWM_dutycycle(Config.RED_PIN, self.r)
             self.pi.set_PWM_dutycycle(Config.GREEN_PIN, self.g)
