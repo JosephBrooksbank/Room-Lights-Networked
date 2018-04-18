@@ -43,6 +43,7 @@ class Lighting:
                 print("Timeout, trying again...")
 
             if (oldr is not self.r and oldg is not self.g and oldb is not self.b):
+                print("Lighting changed, at if statement")
                 self.update = True
                 oldr, oldg, oldb = self.r , self.g, self.b
             time.sleep(1)
@@ -54,6 +55,7 @@ class Lighting:
     def send_to_lights(self, conn, addr):
         data = json.dumps([self.r, self.g, self.b])
         conn.sendall(data.encode())
+        print("data sent")
 
 
     def socket_server(self):
@@ -70,6 +72,8 @@ class Lighting:
             conn, addr = self.server_socket.accept()
             print('got connection')
             client_thread = threading.Thread(target=self.handler, args=(conn, addr))
+            client_thread.daemon = True
+            client_thread.start()
 
     def handler(self, conn, addr):
         conn.sendall("Connected to Light Server".encode())
@@ -77,6 +81,7 @@ class Lighting:
             if self.update:
                 conn.sendall(json.dumps([self.r, self.g, self.b]).encode())
                 self.update = False
+                print("data sent, handler")
 
 
 if __name__ == '__main__':
