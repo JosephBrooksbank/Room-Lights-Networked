@@ -25,6 +25,7 @@ class client:
         except socket.error as e:
             print(str(e))
 
+        print(c.recv(1044).decode('utf-8'))
         while True:
             data = c.recv(1024).decode('utf-8')
             if not data:
