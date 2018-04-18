@@ -47,8 +47,8 @@ def interface_connection_handler(conn):
         print("This wasn't supposed to happen") # I've been working on this far too long
     data_load = json.loads(data)
     if (len(data_load) == 3):
-        color = data_load
-        print(color)
+        currentStatus['currentColor'] = data_load
+        print(currentStatus)
     conn.shutdown(socket.SHUT_WR)
     print("Closed connection")
 
