@@ -1,13 +1,14 @@
+import json
 import socket
 import time
 from Config import Config
 import threading
 
-CLIENT_COMMANDS = {'red' : [255,0,0], 'green': [0,255,0], 'blue' : [0,0,255], 'white' : [255,255,255]}
+
 class client:
 
     def __init__(self):
-        self.color = CLIENT_COMMANDS['white']
+        self.color = [255,255,255]
         self.isPolling = True
         self.color_lock = threading.Lock()
         self.brightness = 255
@@ -40,7 +41,7 @@ class client:
             #with self.color_lock:
             data = c.recv(2048)
             data = data.decode('utf-8')
-            self.color = CLIENT_COMMANDS[data]
+            self.color = json.loads(data)
             print(self.color)
             time.sleep(1)
             if not data:

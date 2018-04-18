@@ -31,7 +31,8 @@ def handler(conn, addr):
             interface_connection_handler(conn)
             break
         try:
-            conn.sendall(currentStatus[data].encode())
+            data_dump = json.dumps(currentStatus[data])
+            conn.sendall(data_dump.encode())
             print("sent")
         except NameError:
             pass
