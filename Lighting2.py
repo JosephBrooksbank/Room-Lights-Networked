@@ -42,10 +42,12 @@ class Lighting:
             except phue.PhueRequestTimeout:
                 print("Timeout, trying again...")
 
+            print(self.r, self.g, self.b)
             if (oldr is not self.r and oldg is not self.g and oldb is not self.b):
                 print("Lighting changed, at if statement")
                 self.update = True
-                oldr, oldg, oldb = self.r , self.g, self.b
+
+            oldr, oldg, oldb = self.r, self.g, self.b
             time.sleep(1)
 
 
