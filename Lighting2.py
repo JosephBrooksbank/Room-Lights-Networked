@@ -43,7 +43,7 @@ class Lighting:
                 print("Timeout, trying again...")
 
             print(self.r, self.g, self.b)
-            if (oldr is not self.r and oldg is not self.g and oldb is not self.b):
+            if (oldr is not self.r or oldg is not self.g or oldb is not self.b):
                 print("Lighting changed, at if statement")
                 self.update = True
 
