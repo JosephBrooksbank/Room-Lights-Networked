@@ -9,10 +9,12 @@ ROOM_GROUP_ID = 2
 
 import phue
 import rgbxy
+
 class Lighting:
 
     def __init__(self):
-        self.converter = rgbxy.Converter()
+        # Using GamutC for the new bulbs 
+        self.converter = rgbxy.Converter(rgbxy.GamutC)
         self.bridge = phue.Bridge('10.5.44.119')
         self.r = 255
         self.g = 255
@@ -49,16 +51,7 @@ class Lighting:
                 self.update = True
 
             oldr, oldg, oldb = self.r, self.g, self.b
-            time.sleep(1)
-
-
-
-
-
-    def send_to_lights(self, conn, addr):
-        data = json.dumps([self.r, self.g, self.b])
-        conn.sendall(data.encode())
-        print("data sent")
+            time.sleep(0.5)
 
 
     def socket_server(self):
