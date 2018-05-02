@@ -1,4 +1,4 @@
-#!/home/pi/.virtualenvs/remi/bin/python
+#!/home/pi/.virtualenvs/Lighting2/bin/python
 import json
 import time
 import socket
