@@ -1,7 +1,7 @@
 import json
 import socket
-from Config import Config
-from light_client import client
+from Testing.Config import Config
+from Testing.light_client import client
 
 class interface_client(client):
     def main(self):

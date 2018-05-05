@@ -1,7 +1,7 @@
 import socket
 import json
 import threading
-from Config import Config
+from Testing.Config import Config
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

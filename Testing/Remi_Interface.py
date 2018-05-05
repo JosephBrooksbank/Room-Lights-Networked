@@ -1,7 +1,7 @@
 import json
 
 import remi.gui as gui
-from Config import Config
+from Testing.Config import Config
 from remi import *
 import socket
 

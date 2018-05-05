@@ -3,7 +3,7 @@ import json
 import time
 import socket
 import threading
-from Config import Config
+from Testing.Config import Config
 MITCH_LIGHT_ID = 7
 ROOM_GROUP_ID = 2
 

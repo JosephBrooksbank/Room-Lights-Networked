@@ -1,6 +1,6 @@
-from light_client import client
+from Testing.light_client import client
 import threading
-from Config import Config
+from Testing.Config import Config
 import phue
 import rgbxy
 

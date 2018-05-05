@@ -1,4 +1,4 @@
-from light_client import client
+from Testing.light_client import client
 import threading
 import pigpio
 RED_PIN = 17

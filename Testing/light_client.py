@@ -1,7 +1,7 @@
 import json
 import socket
 import time
-from Config import Config
+from Testing.Config import Config
 import threading
 
 

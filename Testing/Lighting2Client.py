@@ -3,7 +3,7 @@ import json
 import socket
 import pigpio
 
-from Config import Config
+from Testing.Config import Config
 
 class client:
 
