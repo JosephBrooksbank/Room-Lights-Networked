@@ -54,7 +54,12 @@ class Lighting:
     def __init__(self):
         self.pi = pigpio.pi()
         self.converter = rgbxy.Converter(gamut)
-        self.bridge = phue.Bridge(HUE_BRIDGE_IP)
+        try:
+            self.bridge = phue.Bridge(HUE_BRIDGE_IP)
+        except OSError:
+            print("Network Error, not really sure how to fix tbh")
+            exit(1)
+            
         self.rgb = [255,255,255]
         self.rgb_lock = threading.Lock()
 
@@ -124,6 +129,7 @@ class Color:
 
     def __str__(self):
         return str(self.color)
+
 
 if __name__ == '__main__':
     Lighting().main()
