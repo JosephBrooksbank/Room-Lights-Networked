@@ -15,7 +15,7 @@ import pigpio
 GROUP_ID = 2
 # The light ID itself, this is difficult to obtain without access to the api
 # TODO create an installer that gives users options about their light
-LIGHT_ID = 7
+LIGHT_ID = 5
 
 # The IP of the bridge to use
 HUE_BRIDGE_IP = '10.5.44.119'
@@ -29,6 +29,8 @@ BLUE_PIN = 22
 # Almost definitely GamutC if the lights are new
 gamut = rgbxy.GamutC
 
+# Max brightness level possible by the lights, leave this be unless you're sure that the brightness range is different
+MAX_BRIGHTNESS = 255
 
 def in_range(range_of_color, values):
 
@@ -59,8 +61,9 @@ class Lighting:
         except OSError:
             print("Network Error, not really sure how to fix tbh")
             exit(1)
-            
+
         self.rgb = [255,255,255]
+        self.brightness = 255
         self.rgb_lock = threading.Lock()
 
         # Color pullups, the xy converter isn't optimal for the RGB led strips so I use these
@@ -80,9 +83,10 @@ class Lighting:
         polling_thread.start()
 
         while True:
-            self.pi.set_PWM_dutycycle(RED_PIN, self.rgb[0])
-            self.pi.set_PWM_dutycycle(GREEN_PIN, self.rgb[1])
-            self.pi.set_PWM_dutycycle(BLUE_PIN, self.rgb[2])
+            brightness_ratio = self.brightness / MAX_BRIGHTNESS
+            self.pi.set_PWM_dutycycle(RED_PIN, self.rgb[0] * brightness_ratio)
+            self.pi.set_PWM_dutycycle(GREEN_PIN, self.rgb[1]* brightness_ratio)
+            self.pi.set_PWM_dutycycle(BLUE_PIN, self.rgb[2] * brightness_ratio)
 
 
 
@@ -98,8 +102,8 @@ class Lighting:
                         self.rgb = [0,0,0]
                 else:
                     x,y = pilot_light['xy']
-                    brightness = pilot_light['bri']
-                    lamp_color = self.converter.xy_to_rgb(x,y,brightness)
+                    self.brightness = pilot_light['bri']
+                    lamp_color = self.converter.xy_to_rgb(x,y,self.brightness)
                     with self.rgb_lock:
                         for color in self.list_of_colors:
                             if in_range(color.range, lamp_color):
